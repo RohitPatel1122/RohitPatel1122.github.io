@@ -101,10 +101,8 @@ $(document).ready(function(){
                     sessionStorage.setItem("contact",data.mobile);
                     sessionStorage.setItem("username",data.name);
                     sessionStorage.setItem("user_id",data.user_id);
-                    window.location.path = "/pages/LandingPage.html";
-                    window.location.path = "./pages/LandingPage.html";
-                    window.location.href = "LandingPage.html";
-                    location.href = "./pages/LandingPage.html";
+                    window.location.pathname = '/pages/LandingPage.html'
+                   
                 }
             });
     });

@@ -1,4 +1,4 @@
-var base = "https://ticket-api.azurewebsites.net/api/";
+var base = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/api/";
 getUserInfo();
 function getUserInfo(){
     const urlParams = new URLSearchParams(window.location.search);

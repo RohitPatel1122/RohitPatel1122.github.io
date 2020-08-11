@@ -1,12 +1,15 @@
-const pushsubscriptionbaseURL = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/"
-const postapiurl = new URL('api/pushsubscription/postsubscription/',pushsubscriptionbaseURL);
-const getVapidPublicKeyapi = new URL('api/pushsubscription/getpublickey/',pushsubscriptionbaseURL);
 
+
+
+const pushsubscriptionbaseURL = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/api/"
+const postapiurl = new URL('pushsubscription/postsubscription/',pushsubscriptionbaseURL);
+const getVapidPublicKeyapi = new URL('pushsubscription/getpublickey/',pushsubscriptionbaseURL);
+let swregistration = null
 //Need to remove this hardcoded auth token and user id
 // const auth_token= sessionStorage.getItem("auth_key");
 // const user_id= sessionStorage.getItem("user_id");
-const auth_token= '50c752670f24aca19e013228931797544cca413d'
-const user_id = 1;
+const auth_token=sessionStorage.getItem("auth_key");
+const user_id =sessionStorage.getItem("user_id");
 var pushCheckbox;
 
 
@@ -28,9 +31,12 @@ function urlBase64ToUint8Array(base64String) {
 
 /**** START register-sw ****/
 function registerServiceWorker() {
-  return navigator.serviceWorker.register('service-worker.js')
+  
+  return navigator.serviceWorker.register('/service-worker.js')
     .then(function (registration) {
       console.log('Service worker successfully registered.');
+      console.log('Registration successful, scope is:', registration.scope);
+      swregistration = registration;
       return registration;
     })
     .catch(function (err) {
@@ -42,7 +48,13 @@ function registerServiceWorker() {
 // This is just to make sample code eaier to read.
 // TODO: Move into a variable rather than register each time.
 function getSWRegistration() {
-  return navigator.serviceWorker.register('service-worker.js');
+  return navigator.serviceWorker.getRegistration('/').then(function(registration) {
+    if(registration){
+      return registration;
+    }else {
+      return registerServiceWorker()
+    }
+  });
 }
 
 /**** START request-permission ****/
@@ -58,6 +70,7 @@ function askPermission() {
   })
     .then(function (permissionResult) {
       if (permissionResult !== 'granted') {
+        alert('Kindly allow notification to send in settings/')
         throw new Error('We weren\'t granted permission.');
       }
     });
@@ -87,7 +100,7 @@ function getNotificationPermissionState() {
 /**** END get-permission-state ****/
 
 function unsubscribeUserFromPush() {
-  return registerServiceWorker()
+  return getSWRegistration()
     .then(function (registration) {
       // Service worker is active so now we can subscribe the user.
       return registration.pushManager.getSubscription();
@@ -100,6 +113,7 @@ function unsubscribeUserFromPush() {
     .then(function (subscription) {
       pushCheckbox.disabled = false;
       pushCheckbox.checked = false;
+      alert('Successfully Unsubscribed from push notification')
     })
     .catch(function (err) {
       console.error('Failed to subscribe the user.', err);
@@ -139,6 +153,7 @@ function sendSubscriptionToBackEnd(subscription) {
   console.log("Subscribing user for push")
   
   return getSWRegistration().then(async function (registration) {
+    console.log('Registration successful, scope is:', registration.scope);
     getVapidPublicKeyapi.searchParams.append('user_id', user_id)
     getVapidPublicKeyapi.searchParams.append('auth_key',auth_token)
     const response = await fetch(getVapidPublicKeyapi);
@@ -171,6 +186,7 @@ function setUpPush(checkbox) {
       const currentPermissionState = results[1];
 
       if (currentPermissionState === 'denied') {
+        alert('Notification Persmission is blocked.')
         console.warn('The notification permission has been blocked. Nothing we can do.');
         pushCheckbox.disabled = true;
         return;
@@ -205,6 +221,7 @@ function setUpPush(checkbox) {
               // re-enable our UI and set up state.
               pushCheckbox.disabled = false;
               pushCheckbox.checked = subscription !== null;
+              alert('successfully subscribed for push')
             })
             .catch(function (err) {
               console.error('Failed to subscribe the user.', err);
@@ -236,21 +253,6 @@ function setUpPush(checkbox) {
       console.log('Unable to register the service worker: ' + err);
     });
 }
-function allowPush(){
-  console.log('app.js');
+window.onload=function(){
+  registerServiceWorker()
 }
-// window.onload = function () {
-//   /**** START feature-detect ****/
-//   // const pushCheckbox = document.querySelector('.js-push-toggle-checkbox');
-//   if (!('serviceWorker' in navigator)) {
-//     // Service Worker isn't supported on this browser, disable or hide UI.
-//     return;
-//   }
-
-//   if (!('PushManager' in window)) {
-//     // Push isn't supported on this browser, disable or hide UI.
-//     return;
-//   }
-//   /**** END feature-detect ****/
-//   setUpPush();
-// };

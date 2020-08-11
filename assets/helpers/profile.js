@@ -1,4 +1,4 @@
- var base = "https://ticket-api.azurewebsites.net/api/";
+ var base = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/api/";
  function savechanges(){
     // var fd = new FormData();
     // fd.append("auth_key", sessionStorage.getItem("auth_key"));
@@ -154,7 +154,7 @@ $(document).ready(function(){
                                                                     <input type="tel" id="mobile" class="form-control" placeholder="Contact" value="`+data.mobile+`"><br>
 
                                                                     <select class="form-control" id="profile-type">`;
-                                                                    if(data.profile_type.toLowerCase()=="buyer")
+                                                                    /* if(data.profile_type.toLowerCase()=="buyer")
                                                                     {
                                                                         cardData += `<option value="buyer" selected>Buyer</option>
                                                                         <option value="seller">Seller</option>
@@ -171,7 +171,7 @@ $(document).ready(function(){
                                                                         cardData += `<option value="buyer">Buyer</option>
                                                                         <option value="seller">Seller</option>
                                                                         <option value="both" selected="selected">Both</option>`;
-                                                                    }
+                                                                    } */
                                                                     cardData +=`</select><br>
                                                                     <select class="form-control" id="subscription-type">`;
                                                                     if(data.subscription_type.toLowerCase()=="free")
@@ -294,7 +294,14 @@ $(document).ready(function(){
                         
     	            });
             console.log("ajax ends");
-              setUpPush($('#enable-push-checkbox')[0]);
+            if (('serviceWorker' in navigator) && ('PushManager' in window)) {
+                console.log("PUSH IS SUPPORTED")
+                setUpPush($('#enable-push-checkbox')[0]);
+                  }else{
+                   consol.error("PUSH IS NOT SUPPORTED on this browser")
+                   $('#enable-push-checkbox').hide();
+                  }
+              
     //         $('#enable-push-checkbox').change(function() {
     //         if(this.checked) {
     //             console.log("event");
