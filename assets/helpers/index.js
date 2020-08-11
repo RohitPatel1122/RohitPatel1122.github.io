@@ -5,6 +5,6 @@ $(document).ready(function(){
         if(sessionStorage.getItem("user_id")==null)
             location.pathname = '/pages/Login.html'
         else
-        	location.pathname = '/pages/LandingPages.html'
+        	location.pathname = '/pages/LandingPage.html'
     }
 });

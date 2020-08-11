@@ -1,4 +1,4 @@
-var base = "https://ticket-api.azurewebsites.net/api/";
+var base = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/";
     function intrested(ticket_id){
         var stats= $('#int'+ticket_id).attr('data-stat');
         var count = Number($('#intticket'+ticket_id).html());
@@ -101,7 +101,7 @@ $(document).ready(function(){
                     sessionStorage.setItem("contact",data.mobile);
                     sessionStorage.setItem("username",data.name);
                     sessionStorage.setItem("user_id",data.user_id);
-                    window.location.href = "Landing Page.html";
+                    window.location.path = "/pages/LandingPage.html";
                 }
             });
     });
@@ -143,7 +143,7 @@ $(document).ready(function(){
                 contentType: 'application/json',
                 success: function(data){
                     alert("Registration Success.....Welcome to our platform");
-                    window.location.href = "Login.html";
+                    window.location.path = "pages/Login.html";
                 }
             });
     });
