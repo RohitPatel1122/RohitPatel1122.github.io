@@ -1,4 +1,4 @@
-var base = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/";
+var base = "http://ticketappapp.eba-9c9rggpp.ap-southeast-1.elasticbeanstalk.com/api/";
     function intrested(ticket_id){
         var stats= $('#int'+ticket_id).attr('data-stat');
         var count = Number($('#intticket'+ticket_id).html());
