@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ticketing | Register</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.2/select2.css" rel="stylesheet" /> -->
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            
+            <div class="card-header text-center "><a class="navbar-brand" href="#">Ticketing</a><span class="splash-description">Please enter your user information.</span></div>
+                                <input type="hidden" name="auth_key" value="">
+								<div class="card-body">
+                                    <form class="needs-validation" novalidate>
+ <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input id="name" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Name" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email address</label>
+                                            <input id="email" type="email" name="email" data-parsley-trigger="change" required="" placeholder="Email" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword">Password</label>
+                                            <input id="password" type="password" placeholder="Password" required="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputRepeatPassword">Confirm Password</label>
+                                            <input id="inputRepeatPassword" data-parsley-equalto="#inputPassword" type="password" required="" placeholder="Password" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="preference">Preference</label>
+                                            <input id="preference" type="text" name="preference" data-parsley-trigger="change" required="" placeholder="Preference" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mobile">Mobile</label>
+                                            <input id="mobile" type="text" name="preference" data-parsley-trigger="change" required="" placeholder="Mobile" autocomplete="off" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subscription_type">Profile Type</label>
+                                            <select class="form-control" name="profile_type" id="profile_type">
+                                            <option value="buyer">Buyer</option>
+                                             <option  value="Seller" >Seller</option>
+                                             <option value="both">Both</option>
+                                            </select>
+                                        </div>
+										<!-- <div class="form-group"> -->
+                                    <!-- <div class="rs-select2 js-select-simple select--no-search"> -->
+<!--                                         <select name="profile_type" id="profile_type">-->
+                                            <!-- <option selected="selected">-Select Profile Type-</option> -->
+                                            <!-- <option>Buyer</option>
+                                            <option>Seller</option>
+                                            <option>Both</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div> -->
+                                         <div class="form-group">
+                                            <label for="subscription_type">Subscription</label>
+                                            <select class="form-control" id="subscription_type">
+                                            <option>Free</option>
+                                             <option disabled="disabled">Paid</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="city">City</label>
+                                                <input type="text" class="form-control" id="city" placeholder="City" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid city.
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="state">State</label>
+                                                <input type="text" class="form-control" id="state" placeholder="State" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid state.
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="country">Country</label>
+                                                <input type="text" class="form-control" id="country" placeholder="Country" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid Country.
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                                        <label class="form-check-label" for="invalidCheck">
+                                                            Agree to terms and conditions
+                                                        </label>
+                                                        <div class="invalid-feedback">
+                                                            You must agree before submitting.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                <button class="btn btn-primary" type="button" id="register">Submit form</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+        </div>
+    </div>
+  
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+   <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+   
+    <!-- bootstap bundle js -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <!-- <script src="../assets/vendor/select2js/main.js"></script> -->
+	<script src="../assets/helpers/helper.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+<!-- 
+    <script type="text/javascript">
+        $(document).ready(function() 
+        {
+        $('.js-example-basic-multiple').select2();
+        });
+        $("#preference").select2();
+        $("#mobile").select2();
+        $("#checkbox").click(function(){
+        if($("#checkbox").is(':checked') ){
+        $("#preference > option").prop("selected","selected");
+        $("#preference").trigger("change");
+        }else{
+        $("#preference > option").removeAttr("selected");
+        $("#preference").trigger("change");
+        }
+});
+    </script> -->
+
+</body>
+ 
+</html>
